@@ -1,0 +1,2178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BURN BOOK</title>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;600;800&family=Lexend:wght@400;600&family=Cedarville+Cursive&family=Special+Elite&family=Another+Danger&family=Caveat&family=Shadows+Into+Light&family=Grape+Nuts&family=Fredoka&family=Fredoka+One&family=Fredoka+Two&family=Fredoka:wght@300;400;500;600;700&family=Fredoka:ital@0;1&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-brand: #B40F52;
+            --hot-pink: #FF1493;
+            --deep-burgundy: #5D1049;
+            --dark-burgundy: #3D0A2E;
+            --cream: #FFFAE0;
+            --light-cream: #FFF5E6;
+            --white: #FFFFFF;
+            --yellow: #FFFF00;
+            --lime-green: #7FFF00;
+            --cyan: #00FFFF;
+            --peach: #FFD9B3;
+            --dark-text: #1E1C0A;
+            --pink-accent: #D6316A;
+            --orange-salmon: #FF9966;
+            --magenta: #C41E3A;
+        }
+
+        body {
+            font-family: 'Lexend', sans-serif;
+            background-color: var(--dark-burgundy);
+            color: var(--white);
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* SCREEN MANAGEMENT */
+        .screen {
+            display: none;
+            flex: 1;
+            width: 100%;
+            min-height: 100vh;
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        .screen.active {
+            display: flex;
+            flex-direction: column;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* LANDING PAGE */
+        #landing-page {
+            background: linear-gradient(135deg, #8B0A3D 0%, #B40F52 50%, #5D1049 100%);
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .starfield {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        .landing-content {
+            text-align: center;
+            z-index: 10;
+            position: relative;
+        }
+
+        .hero-title {
+            font-family: 'EB Garamond', serif;
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .ransom-letter {
+            display: inline-flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem;
+            margin: 2rem 0;
+        }
+
+        .letter-tile {
+            width: 50px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            font-weight: bold;
+            border: 2px solid white;
+            transform: rotate(-2deg);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .letter-tile:nth-child(odd) {
+            background: white;
+            color: var(--dark-burgundy);
+        }
+
+        .letter-tile:nth-child(even) {
+            background: var(--hot-pink);
+            color: white;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(-2deg); }
+            50% { transform: translateY(-10px) rotate(-2deg); }
+        }
+
+        .doodle {
+            font-family: 'Cedarville Cursive', cursive;
+            font-size: 1.5rem;
+            margin: 1rem;
+            opacity: 0.8;
+        }
+
+        .cta-button {
+            background: var(--hot-pink);
+            color: white;
+            border: none;
+            padding: 1rem 3rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            margin-top: 2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .cta-subtitle {
+            font-family: 'Cedarville Cursive', cursive;
+            font-size: 1.2rem;
+            margin-top: 1rem;
+            font-style: italic;
+            opacity: 0.9;
+        }
+
+        /* HEADER */
+        .header {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--hot-pink);
+        }
+
+        .header-title {
+            font-family: 'EB Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--hot-pink);
+            flex: 1;
+            text-align: center;
+        }
+
+        .header-badge {
+            font-size: 0.9rem;
+            background: var(--hot-pink);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            color: var(--dark-burgundy);
+            font-weight: bold;
+        }
+
+        .icon-btn {
+            background: transparent;
+            border: none;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .icon-btn:hover {
+            color: var(--hot-pink);
+        }
+
+        /* ACCESS SCREEN */
+        #access-screen {
+            background: linear-gradient(135deg, #3D0A2E 0%, #5D1049 100%);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .access-container {
+            text-align: center;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 3rem;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .padlock-icon {
+            font-size: 6rem;
+            margin-bottom: 2rem;
+            animation: glow 2s infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { filter: drop-shadow(0 0 20px var(--hot-pink)); }
+            50% { filter: drop-shadow(0 0 40px var(--hot-pink)); }
+        }
+
+        .access-prompt {
+            font-family: 'Cedarville Cursive', cursive;
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: var(--light-cream);
+        }
+
+        .passcode-display {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .passcode-dot {
+            width: 30px;
+            height: 30px;
+            border: 3px solid var(--hot-pink);
+            border-radius: 50%;
+            background: transparent;
+        }
+
+        .passcode-dot.filled {
+            background: var(--hot-pink);
+        }
+
+        .keypad {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-top: 2rem;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .keypad-btn {
+            padding: 1.5rem;
+            font-size: 1.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-weight: bold;
+        }
+
+        .keypad-btn:hover {
+            background: rgba(255, 20, 147, 0.3);
+            border-color: var(--hot-pink);
+            transform: scale(1.05);
+        }
+
+        .keypad-btn:active {
+            transform: scale(0.95);
+        }
+
+        .error-message {
+            color: #ff6b6b;
+            font-size: 1rem;
+            margin-top: 1rem;
+            display: none;
+        }
+
+        .error-message.show {
+            display: block;
+            animation: shake 0.3s;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+
+        /* MAIN CONTENT AREA */
+        .main-content {
+            flex: 1;
+            overflow-y: auto;
+            padding-bottom: 80px;
+        }
+
+        /* ADD TARGET SCREEN */
+        #add-target-screen {
+            background: linear-gradient(135deg, #3D0A2E 0%, #5D1049 100%);
+        }
+
+        .add-target-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 2rem;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .left-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .panel-heading {
+            font-family: 'Another Danger', cursive;
+            font-size: 2rem;
+            color: var(--hot-pink);
+            margin-bottom: 1rem;
+            border-bottom: 3px solid var(--hot-pink);
+            padding-bottom: 0.5rem;
+        }
+
+        .photo-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .photo-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .tape-effect {
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%) rotate(-5deg);
+            width: 80px;
+            height: 20px;
+            background: rgba(200, 200, 200, 0.5);
+            border-radius: 3px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .photo-placeholder {
+            font-size: 4rem;
+            margin: 1rem 0;
+        }
+
+        .photo-preview {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            max-height: 300px;
+            object-fit: cover;
+        }
+
+        .photo-label {
+            color: var(--dark-text);
+            font-size: 0.9rem;
+            margin-top: 1rem;
+        }
+
+        .label-section {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 10px;
+        }
+
+        .label-heading {
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: var(--light-cream);
+        }
+
+        .wavy-underline {
+            width: 60px;
+            height: 3px;
+            background: var(--hot-pink);
+            border-radius: 3px;
+            margin-bottom: 1rem;
+            transform: scaleY(0.5);
+        }
+
+        .hashtag-buttons {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .hashtag-btn {
+            background: var(--primary-brand);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+        }
+
+        .hashtag-btn:hover {
+            background: var(--hot-pink);
+            transform: scale(1.05);
+        }
+
+        .right-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-label {
+            color: var(--light-cream);
+            font-size: 0.9rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .form-input,
+        .form-textarea {
+            background: var(--cream);
+            border: 2px solid var(--primary-brand);
+            padding: 1rem;
+            border-radius: 8px;
+            font-family: 'Lexend', sans-serif;
+            color: var(--dark-text);
+            transition: all 0.2s ease;
+        }
+
+        .form-input:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: var(--hot-pink);
+            box-shadow: 0 0 10px rgba(255, 20, 147, 0.3);
+        }
+
+        .form-input::placeholder,
+        .form-textarea::placeholder {
+            color: var(--pink-accent);
+        }
+
+        .form-textarea {
+            min-height: 200px;
+            resize: vertical;
+            font-family: 'Fredoka', sans-serif;
+            font-weight: 500;
+            background-image: 
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 30px,
+                    rgba(255, 255, 255, 0.1) 30px,
+                    rgba(255, 255, 255, 0.1) 31px
+                );
+            background-size: 100% 30px;
+            padding-top: 10px;
+        }
+
+        .submit-btn {
+            background: var(--hot-pink);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+            align-self: flex-end;
+        }
+
+        .submit-btn:hover {
+            background: var(--primary-brand);
+            transform: scale(1.05);
+        }
+
+        /* VIEW VICTIMS SCREEN */
+        #view-victims-screen {
+            background: linear-gradient(135deg, #3D0A2E 0%, #5D1049 100%);
+        }
+
+        .victims-content {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .victims-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .victim-card {
+            background: var(--cream);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .victim-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        .victim-photo {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, var(--hot-pink), var(--primary-brand));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            overflow: hidden;
+        }
+
+        .victim-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .victim-info {
+            padding: 1.5rem;
+            color: var(--dark-text);
+        }
+
+        .victim-name {
+            font-family: 'EB Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-brand);
+            margin-bottom: 0.5rem;
+        }
+
+        .victim-category {
+            background: var(--hot-pink);
+            color: white;
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .victim-description {
+            font-size: 0.9rem;
+            line-height: 1.4;
+            color: var(--dark-text);
+            margin-bottom: 1rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .victim-actions {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: space-between;
+        }
+
+        .victim-action-btn {
+            flex: 1;
+            border: none;
+            padding: 0.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.2s ease;
+            font-size: 0.9rem;
+        }
+
+        .victim-edit-btn {
+            background: var(--orange-salmon);
+            color: white;
+        }
+
+        .victim-edit-btn:hover {
+            background: #ff7f50;
+            transform: scale(1.05);
+        }
+
+        .victim-burn-btn {
+            background: var(--hot-pink);
+            color: white;
+        }
+
+        .victim-burn-btn:hover {
+            background: var(--primary-brand);
+            transform: scale(1.05);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: var(--light-cream);
+        }
+
+        .empty-state-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            opacity: 0.7;
+        }
+
+        .empty-state-text {
+            font-size: 1.3rem;
+            font-family: 'Special Elite', cursive;
+            color: var(--yellow);
+            font-weight: bold;
+        }
+
+        /* HOT TAKES WALL */
+        #wall-screen {
+            background: linear-gradient(135deg, #3D0A2E 0%, #5D1049 100%);
+        }
+
+        .wall-content {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .wall-input-section {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            align-items: flex-end;
+        }
+
+        .wall-input {
+            flex: 1;
+            background: var(--light-cream);
+            border: 2px solid var(--hot-pink);
+            padding: 1rem;
+            border-radius: 25px;
+            font-family: 'Cedarville Cursive', cursive;
+            color: var(--dark-text);
+        }
+
+        .wall-input::placeholder {
+            color: var(--pink-accent);
+        }
+
+        .emoji-picker-btn {
+            background: var(--hot-pink);
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.7rem 1.2rem;
+            border-radius: 50%;
+            transition: all 0.2s ease;
+        }
+
+        .emoji-picker-btn:hover {
+            background: var(--primary-brand);
+            transform: scale(1.1);
+        }
+
+        .wall-post-btn {
+            background: var(--hot-pink);
+            color: white;
+            border: none;
+            padding: 0.7rem 2rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.2s ease;
+        }
+
+        .wall-post-btn:hover {
+            background: var(--primary-brand);
+            transform: scale(1.05);
+        }
+
+        .sticky-notes-wall {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .sticky-note {
+            padding: 1.5rem;
+            border-radius: 5px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+            transform: rotate(var(--rotation));
+            transition: all 0.3s ease;
+            cursor: default;
+            position: relative;
+        }
+
+        .sticky-note:hover {
+            transform: rotate(var(--rotation)) scale(1.05) translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .note-yellow {
+            background: var(--yellow);
+            color: var(--dark-text);
+        }
+
+        .note-pink {
+            background: #FFB1C1;
+            color: var(--dark-text);
+        }
+
+        .note-green {
+            background: var(--lime-green);
+            color: var(--dark-text);
+        }
+
+        .note-cyan {
+            background: var(--cyan);
+            color: var(--dark-text);
+        }
+
+        .note-peach {
+            background: var(--peach);
+            color: var(--dark-text);
+        }
+
+        .note-white {
+            background: white;
+            color: var(--dark-text);
+            border: 2px solid #ddd;
+        }
+
+        .note-content {
+            font-family: 'Cedarville Cursive', cursive;
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            min-height: 60px;
+            display: -webkit-box;
+            -webkit-line-clamp: 4;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .note-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8rem;
+            margin-top: 0.5rem;
+            opacity: 0.8;
+        }
+
+        .note-delete-btn {
+            background: transparent;
+            border: none;
+            color: var(--dark-text);
+            font-size: 1rem;
+            cursor: pointer;
+            opacity: 0.6;
+            transition: all 0.2s ease;
+        }
+
+        .note-delete-btn:hover {
+            opacity: 1;
+            transform: scale(1.2);
+        }
+
+        /* DETAIL VIEW */
+        #detail-view-screen {
+            background: linear-gradient(135deg, #3D0A2E 0%, #5D1049 100%);
+        }
+
+        .detail-content {
+            padding: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .notebook-page {
+            background: var(--cream);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .notebook-page::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 30px;
+            background: white;
+            clip-path: polygon(0 0, 100% 0, 100% 70%, 0 100%);
+            border-bottom: 2px solid var(--cream);
+        }
+
+        .notebook-content {
+            position: relative;
+            z-index: 1;
+            margin-top: 20px;
+            background-image: 
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 30px,
+                    rgba(200, 100, 100, 0.1) 30px,
+                    rgba(200, 100, 100, 0.1) 31px
+                );
+            background-size: 100% 30px;
+            padding: 1.5rem;
+            border-radius: 10px;
+        }
+
+        .entry-header {
+            font-family: 'EB Garamond', serif;
+            font-size: 1.5rem;
+            color: var(--primary-brand);
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+
+        .detail-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .detail-photo {
+            background: white;
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        .detail-photo-image {
+            width: 100%;
+            height: auto;
+            max-height: 300px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .detail-photo-placeholder {
+            font-size: 4rem;
+            margin: 2rem 0;
+        }
+
+        .detail-text {
+            color: var(--dark-text);
+            line-height: 1.6;
+            font-family: 'Cedarville Cursive', cursive;
+        }
+
+        .detail-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            justify-content: flex-end;
+        }
+
+        .detail-btn {
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.2s ease;
+        }
+
+        .detail-cancel-btn {
+            background: var(--light-cream);
+            color: var(--dark-text);
+        }
+
+        .detail-cancel-btn:hover {
+            background: var(--cream);
+            transform: scale(1.05);
+        }
+
+        .detail-edit-btn {
+            background: var(--orange-salmon);
+            color: white;
+        }
+
+        .detail-edit-btn:hover {
+            background: #ff7f50;
+            transform: scale(1.05);
+        }
+
+        .detail-burn-btn {
+            background: var(--hot-pink);
+            color: white;
+        }
+
+        .detail-burn-btn:hover {
+            background: var(--primary-brand);
+            transform: scale(1.05);
+        }
+
+        /* BURN ANIMATION SCREEN */
+        #burn-animation-screen {
+            background: #000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .burn-animation-content {
+            text-align: center;
+            z-index: 10;
+        }
+
+        .burn-title {
+            font-family: 'EB Garamond', serif;
+            font-size: 3rem;
+            color: var(--hot-pink);
+            margin-bottom: 2rem;
+            font-weight: bold;
+        }
+
+        .burning-paper {
+            width: 400px;
+            height: 300px;
+            background: #333;
+            margin: 2rem auto;
+            border-radius: 10px;
+            box-shadow: 0 0 40px rgba(255, 100, 0, 0.6);
+            animation: burn 3s ease-out forwards;
+        }
+
+        @keyframes burn {
+            0% {
+                opacity: 1;
+                box-shadow: 0 0 40px rgba(255, 100, 0, 0.6);
+            }
+            50% {
+                box-shadow: 0 0 60px rgba(255, 100, 0, 0.8);
+            }
+            100% {
+                opacity: 0;
+                box-shadow: 0 0 20px rgba(255, 100, 0, 0.2);
+            }
+        }
+
+        .burn-main-text {
+            font-family: 'Cedarville Cursive', cursive;
+            font-size: 2.5rem;
+            color: white;
+            margin: 2rem 0;
+            font-style: italic;
+        }
+
+        .burn-subtitle {
+            font-family: 'EB Garamond', serif;
+            font-size: 1.5rem;
+            color: var(--orange-salmon);
+            text-transform: uppercase;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        /* BOTTOM NAVIGATION */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--cream);
+            border-top: 3px solid var(--hot-pink);
+            display: flex;
+            justify-content: space-around;
+            z-index: 100;
+            height: 70px;
+        }
+
+        .nav-item {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border: none;
+            background: transparent;
+            color: var(--dark-text);
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .nav-item:hover {
+            color: var(--hot-pink);
+        }
+
+        .nav-item.active {
+            color: var(--hot-pink);
+            font-weight: bold;
+        }
+
+        .nav-item.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--hot-pink);
+        }
+
+        .nav-icon {
+            font-size: 1.8rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .nav-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: bold;
+        }
+
+        /* MODALS */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        .modal-overlay.show {
+            display: block;
+        }
+
+        .emoji-picker-modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            max-width: 500px;
+            width: 90%;
+        }
+
+        .emoji-picker-modal.show {
+            display: block;
+        }
+
+        .emoji-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .emoji-option {
+            font-size: 2rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+            text-align: center;
+        }
+
+        .emoji-option:hover {
+            background: var(--cream);
+            transform: scale(1.2);
+        }
+
+        /* EDIT MODAL */
+        .edit-modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--cream);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            max-width: 900px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .edit-modal.show {
+            display: block;
+        }
+
+        .edit-modal-header {
+            color: var(--dark-text);
+            margin-bottom: 1.5rem;
+        }
+
+        .edit-modal-header h2 {
+            font-family: 'EB Garamond', serif;
+            color: var(--primary-brand);
+            margin-bottom: 0.5rem;
+        }
+
+        .edit-modal-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .edit-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .edit-form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .edit-form-label {
+            color: var(--dark-text);
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .edit-form-input,
+        .edit-form-textarea {
+            padding: 0.8rem;
+            border: 2px solid var(--primary-brand);
+            border-radius: 8px;
+            font-family: 'Lexend', sans-serif;
+            color: var(--dark-text);
+        }
+
+        .edit-form-input:focus,
+        .edit-form-textarea:focus {
+            outline: none;
+            border-color: var(--hot-pink);
+            box-shadow: 0 0 10px rgba(255, 20, 147, 0.3);
+        }
+
+        .edit-form-textarea {
+            min-height: 150px;
+            resize: vertical;
+            font-family: 'Cedarville Cursive', cursive;
+        }
+
+        .edit-photo-section {
+            text-align: center;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 10px;
+            cursor: pointer;
+            border: 2px dashed var(--hot-pink);
+            transition: all 0.2s ease;
+        }
+
+        .edit-photo-section:hover {
+            background: var(--light-cream);
+        }
+
+        #edit-photo-display {
+            width: 100%;
+            height: auto;
+            max-height: 200px;
+        }
+
+        .edit-preview {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .edit-modal-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            justify-content: flex-end;
+            grid-column: 1 / -1;
+        }
+
+        .edit-modal-btn {
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.2s ease;
+        }
+
+        .edit-cancel-btn {
+            background: #ccc;
+            color: var(--dark-text);
+        }
+
+        .edit-cancel-btn:hover {
+            background: #aaa;
+        }
+
+        .edit-save-btn {
+            background: var(--hot-pink);
+            color: white;
+        }
+
+        .edit-save-btn:hover {
+            background: var(--primary-brand);
+        }
+
+        /* CONFIRMATION MODAL */
+        .confirmation-modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--cream);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+        }
+
+        .confirmation-modal.show {
+            display: block;
+        }
+
+        .confirmation-text {
+            color: var(--dark-text);
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .confirmation-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .confirmation-btn {
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.2s ease;
+        }
+
+        .confirmation-yes {
+            background: var(--hot-pink);
+            color: white;
+        }
+
+        .confirmation-yes:hover {
+            background: var(--primary-brand);
+        }
+
+        .confirmation-no {
+            background: #ccc;
+            color: var(--dark-text);
+        }
+
+        .confirmation-no:hover {
+            background: #aaa;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .add-target-content {
+                grid-template-columns: 1fr;
+            }
+
+            .detail-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .edit-modal-content {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .letter-tile {
+                width: 40px;
+                height: 50px;
+                font-size: 2rem;
+            }
+
+            .victims-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+
+            .sticky-notes-wall {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+
+            .burning-paper {
+                width: 300px;
+                height: 200px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                padding: 0.75rem;
+            }
+
+            .header-title {
+                font-size: 1.5rem;
+            }
+
+            .cta-button {
+                padding: 0.75rem 2rem;
+                font-size: 1.2rem;
+            }
+
+            .add-target-content,
+            .wall-content,
+            .detail-content,
+            .victims-content {
+                padding: 1rem;
+            }
+
+            .panel-heading {
+                font-size: 1.5rem;
+            }
+
+            .form-input,
+            .form-textarea {
+                font-size: 16px;
+            }
+
+            .edit-modal {
+                padding: 1rem;
+                width: 95%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- LANDING PAGE -->
+        <div id="landing-page" class="screen active">
+            <div class="starfield" id="starfield"></div>
+            <div class="landing-content">
+                <div class="doodle">xoxo</div>
+                <div class="hero-title">BURN BOOK</div>
+                <div class="ransom-letter">
+                    <div class="letter-tile">B</div>
+                    <div class="letter-tile">U</div>
+                    <div class="letter-tile">R</div>
+                    <div class="letter-tile">N</div>
+                </div>
+                <div class="doodle">byotch</div>
+                <button class="cta-button" onclick="app.goToAccess()">OPEN IT GURL!</button>
+                <p class="cta-subtitle">You know you want to see who's in here...</p>
+            </div>
+        </div>
+
+        <!-- ACCESS SCREEN -->
+        <div id="access-screen" class="screen">
+            <div class="header">
+                <div style="width: 50px;"></div>
+                <div class="header-title">BURN BOOK</div>
+                <button class="icon-btn" onclick="app.goToLanding()">
+                    <span class="material-symbols-outlined">logout</span>
+                </button>
+            </div>
+            <div style="flex: 1; display: flex; align-items: center; justify-content: center;">
+                <div class="access-container">
+                    <div class="padlock-icon">🔐</div>
+                    <p class="access-prompt">Enter the code if you dare...</p>
+                    <div class="passcode-display" id="passcode-display">
+                        <div class="passcode-dot"></div>
+                        <div class="passcode-dot"></div>
+                        <div class="passcode-dot"></div>
+                        <div class="passcode-dot"></div>
+                    </div>
+                    <div class="keypad" id="keypad"></div>
+                    <div class="error-message" id="error-message">Wrong passcode! Try again.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ADD TARGET SCREEN -->
+        <div id="add-target-screen" class="screen">
+            <div class="header">
+                <button class="icon-btn" onclick="app.showScreen('victims')">
+                    <span class="material-symbols-outlined">arrow_back</span>
+                </button>
+                <div class="header-title">BURN BOOK</div>
+                <button class="icon-btn" onclick="app.logout()">
+                    <span class="material-symbols-outlined">logout</span>
+                </button>
+            </div>
+            <div class="main-content">
+                <div class="add-target-content">
+                    <div class="left-panel">
+                        <div>
+                            <div class="panel-heading">New Target</div>
+                        </div>
+                        <div class="photo-card" id="photo-card" onclick="document.getElementById('photo-input').click()">
+                            <div class="tape-effect"></div>
+                            <div class="photo-placeholder">😊</div>
+                            <p class="photo-label">Click to Add Mugshot</p>
+                        </div>
+                        <input type="file" id="photo-input" accept="image/*" style="display: none;" onchange="app.handlePhotoUpload(event)">
+                        
+                        <div class="label-section">
+                            <div class="label-heading">LABEL THEM</div>
+                            <div class="wavy-underline"></div>
+                            <div class="hashtag-buttons">
+                                <button class="hashtag-btn" onclick="app.toggleTag(this, 'deserves-hell')">#deserves-hell</button>
+                                <button class="hashtag-btn" onclick="app.toggleTag(this, 'narcissist')">#narcissist</button>
+                                <button class="hashtag-btn" onclick="app.toggleTag(this, 'liar')">#liar</button>
+                                <button class="hashtag-btn" onclick="app.toggleTag(this, 'skanky-little-byotch')">#skanky-little-byotch</button>
+                                <button class="hashtag-btn" onclick="app.toggleTag(this, 'i-hate-him')">#i-hate-him</button>
+                                <button class="hashtag-btn" onclick="app.toggleTag(this, 'i-hate-her')">#i-hate-her</button>
+                                <button class="hashtag-btn" onclick="app.toggleTag(this, 'red-flag')">#red-flag</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="right-panel">
+                        <div class="form-group">
+                            <label class="form-label">Target Identity</label>
+                            <input type="text" id="target-name" class="form-input" placeholder="Who's the victim?" />
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Secret Category</label>
+                            <input type="text" id="target-category" class="form-input" placeholder="e.g. backstabbers" />
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Description / Tea Spill</label>
+                            <textarea id="target-description" class="form-textarea" placeholder="spill the tea... don't leave anything out..."></textarea>
+                        </div>
+
+                        <button class="submit-btn" onclick="app.createTarget()">SEAL WITH GLITTER ✨</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- VIEW VICTIMS SCREEN -->
+        <div id="view-victims-screen" class="screen">
+            <div class="header">
+                <div style="width: 50px;"></div>
+                <div class="header-badge">EST. 2007</div>
+                <div class="header-title">BURN BOOK</div>
+                <button class="icon-btn" onclick="app.logout()">
+                    <span class="material-symbols-outlined">logout</span>
+                </button>
+            </div>
+            <div class="main-content">
+                <div class="victims-content">
+                    <div class="victims-grid" id="victims-grid"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- WALL SCREEN -->
+        <div id="wall-screen" class="screen">
+            <div class="header">
+                <div style="width: 50px;"></div>
+                <div class="header-badge">EST. 2007</div>
+                <div class="header-title">BURN BOOK</div>
+                <button class="icon-btn" onclick="app.logout()">
+                    <span class="material-symbols-outlined">logout</span>
+                </button>
+            </div>
+            <div class="main-content">
+                <div class="wall-content">
+                    <div class="wall-input-section">
+                        <input type="text" id="wall-input" class="wall-input" placeholder="drop your hot take..." />
+                        <button class="wall-post-btn" onclick="app.postToWall()">POST</button>
+                    </div>
+                    <div class="sticky-notes-wall" id="sticky-notes-wall"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- DETAIL VIEW SCREEN -->
+        <div id="detail-view-screen" class="screen">
+            <div class="header">
+                <button class="icon-btn" onclick="app.showScreen('victims')">
+                    <span class="material-symbols-outlined">arrow_back</span>
+                </button>
+                <div class="header-title">BURN BOOK</div>
+                <button class="icon-btn" onclick="app.logout()">
+                    <span class="material-symbols-outlined">logout</span>
+                </button>
+            </div>
+            <div class="main-content">
+                <div class="detail-content" id="detail-content"></div>
+            </div>
+        </div>
+
+        <!-- BURN ANIMATION SCREEN -->
+        <div id="burn-animation-screen" class="screen">
+            <div class="burn-animation-content">
+                <div class="burn-title">BURN BOOK</div>
+                <div class="burning-paper"></div>
+                <p class="burn-main-text">gone in flames, babe</p>
+                <p class="burn-subtitle">THE SECRET IS ASH</p>
+            </div>
+        </div>
+
+        <!-- BOTTOM NAVIGATION - HIDDEN ON LANDING/ACCESS -->
+        <div class="bottom-nav" id="bottom-nav" style="display: none;">
+            <button class="nav-item active" onclick="app.showScreen('add-target')">
+                <span class="nav-icon">➕</span>
+                <span class="nav-label">Add Target</span>
+            </button>
+            <button class="nav-item" onclick="app.showScreen('victims')">
+                <span class="nav-icon">👥</span>
+                <span class="nav-label">View Victims</span>
+            </button>
+            <button class="nav-item" onclick="app.showScreen('wall')">
+                <span class="nav-icon">💬</span>
+                <span class="nav-label">Hot Takes</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- MODALS -->
+    <div class="modal-overlay" id="modal-overlay" onclick="app.closeModals()"></div>
+    
+    <div class="edit-modal" id="edit-modal">
+        <div class="edit-modal-header">
+            <h2>Edit Entry</h2>
+            <p style="color: var(--pink-accent); font-size: 0.9rem;">Update the secret details...</p>
+        </div>
+        <div class="edit-modal-content">
+            <div class="edit-form">
+                <div class="edit-form-group">
+                    <label class="edit-form-label">Target Identity</label>
+                    <input type="text" id="edit-target-name" class="edit-form-input" />
+                </div>
+
+                <div class="edit-form-group">
+                    <label class="edit-form-label">Secret Category</label>
+                    <input type="text" id="edit-target-category" class="edit-form-input" />
+                </div>
+
+                <div class="edit-form-group">
+                    <label class="edit-form-label">Description / Tea Spill</label>
+                    <textarea id="edit-target-description" class="edit-form-textarea"></textarea>
+                </div>
+
+                <div class="edit-form-group">
+                    <label class="edit-form-label">Photo</label>
+                    <div class="edit-photo-section" onclick="document.getElementById('edit-photo-input').click()">
+                        <div id="edit-photo-display">
+                            <div style="font-size: 2rem; padding: 1rem;">📷 Click to change photo</div>
+                        </div>
+                    </div>
+                    <input type="file" id="edit-photo-input" accept="image/*" style="display: none;" onchange="app.handleEditPhotoUpload(event)">
+                </div>
+            </div>
+
+            <div class="edit-preview">
+                <p style="color: var(--dark-text); font-weight: bold; margin-bottom: 0.5rem;">Original</p>
+                <div id="edit-preview"></div>
+            </div>
+
+            <div class="edit-modal-buttons">
+                <button class="edit-modal-btn edit-cancel-btn" onclick="app.closeModals()">CANCEL</button>
+                <button class="edit-modal-btn edit-save-btn" onclick="app.saveEdit()">SAVE</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="confirmation-modal" id="confirmation-modal">
+        <p class="confirmation-text" id="confirmation-text"></p>
+        <div class="confirmation-buttons">
+            <button class="confirmation-btn confirmation-no" onclick="app.closeModals()">CANCEL</button>
+            <button class="confirmation-btn confirmation-yes" id="confirmation-yes-btn">CONFIRM</button>
+        </div>
+    </div>
+
+    <script>
+        const app = {
+            currentUser: 'User',
+            passcode: '1604',
+            isUnlocked: false,
+            entries: [],
+            wallPosts: [],
+            selectedTags: [],
+            currentPhotoData: null,
+            currentEditingId: null,
+            selectedEmoji: '😊',
+            colors: ['note-yellow', 'note-pink', 'note-green', 'note-cyan', 'note-peach', 'note-white'],
+            colorIndex: 0,
+
+            init() {
+                this.loadData();
+                this.setupStarfield();
+                this.setupKeypad();
+                this.renderVictims();
+                this.renderWall();
+            },
+
+            loadData() {
+                const saved = localStorage.getItem('burn_book_data');
+                if (saved) {
+                    const data = JSON.parse(saved);
+                    this.entries = data.entries || [];
+                    this.wallPosts = data.wallPosts || [];
+                }
+            },
+
+            saveData() {
+                localStorage.setItem('burn_book_data', JSON.stringify({
+                    entries: this.entries,
+                    wallPosts: this.wallPosts
+                }));
+            },
+
+            setupStarfield() {
+                const starfield = document.getElementById('starfield');
+                for (let i = 0; i < 100; i++) {
+                    const star = document.createElement('div');
+                    star.className = 'star';
+                    star.style.left = Math.random() * 100 + '%';
+                    star.style.top = Math.random() * 100 + '%';
+                    star.style.animationDelay = Math.random() * 3 + 's';
+                    starfield.appendChild(star);
+                }
+            },
+
+            setupKeypad() {
+                const keypad = document.getElementById('keypad');
+                const buttons = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '⭐', '0', '⌫'];
+                buttons.forEach(btn => {
+                    const button = document.createElement('button');
+                    button.className = 'keypad-btn';
+                    button.textContent = btn;
+                    if (btn === '⌫') {
+                        button.onclick = () => this.clearPasscode();
+                    } else if (btn === '⭐') {
+                        button.onclick = () => {};
+                    } else {
+                        button.onclick = () => this.enterPasscodeDigit(btn);
+                    }
+                    keypad.appendChild(button);
+                });
+            },
+
+            enterPasscodeDigit(digit) {
+                const display = document.getElementById('passcode-display');
+                const dots = display.querySelectorAll('.passcode-dot');
+                const currentLength = Array.from(dots).filter(d => d.classList.contains('filled')).length;
+                
+                if (currentLength < 4) {
+                    dots[currentLength].classList.add('filled');
+                    this.currentPasscode = (this.currentPasscode || '') + digit;
+
+                    if (this.currentPasscode.length === 4) {
+                        setTimeout(() => this.checkPasscode(), 300);
+                    }
+                }
+            },
+
+            clearPasscode() {
+                const display = document.getElementById('passcode-display');
+                const dots = display.querySelectorAll('.passcode-dot');
+                dots.forEach(d => d.classList.remove('filled'));
+                this.currentPasscode = '';
+                document.getElementById('error-message').classList.remove('show');
+            },
+
+            checkPasscode() {
+                if (this.currentPasscode === this.passcode) {
+                    this.isUnlocked = true;
+                    this.currentPasscode = '';
+                    this.clearPasscode();
+                    document.getElementById('bottom-nav').style.display = 'flex';
+                    this.showScreen('victims');
+                } else {
+                    document.getElementById('error-message').classList.add('show');
+                    setTimeout(() => this.clearPasscode(), 1000);
+                }
+            },
+
+
+            updateEmojiButton() {
+                // Emoji button removed - no longer used
+            },
+
+
+            closeModals() {
+                document.getElementById('modal-overlay').classList.remove('show');
+                document.getElementById('edit-modal').classList.remove('show');
+                document.getElementById('confirmation-modal').classList.remove('show');
+            },
+
+            goToLanding() {
+                this.isUnlocked = false;
+                this.showScreen('landing');
+                document.getElementById('bottom-nav').style.display = 'none';
+            },
+
+            logout() {
+                this.isUnlocked = false;
+                document.getElementById('bottom-nav').style.display = 'none';
+                this.showScreen('landing');
+            },
+
+            goToAccess() {
+                if (!this.isUnlocked) {
+                    this.showScreen('access');
+                } else {
+                    this.showScreen('victims');
+                }
+            },
+
+            showScreen(screenName) {
+                document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+                
+                let screenId = '';
+                let navIndex = 0;
+
+                switch(screenName) {
+                    case 'landing':
+                        screenId = 'landing-page';
+                        break;
+                    case 'access':
+                        screenId = 'access-screen';
+                        break;
+                    case 'add-target':
+                        if (!this.isUnlocked) {
+                            this.showScreen('access');
+                            return;
+                        }
+                        screenId = 'add-target-screen';
+                        navIndex = 0;
+                        break;
+                    case 'victims':
+                        if (!this.isUnlocked) {
+                            this.showScreen('access');
+                            return;
+                        }
+                        screenId = 'view-victims-screen';
+                        navIndex = 1;
+                        break;
+                    case 'wall':
+                        if (!this.isUnlocked) {
+                            this.showScreen('access');
+                            return;
+                        }
+                        screenId = 'wall-screen';
+                        navIndex = 2;
+                        break;
+                    case 'detail':
+                        screenId = 'detail-view-screen';
+                        break;
+                    case 'burn-animation':
+                        screenId = 'burn-animation-screen';
+                        break;
+                }
+
+                if (screenId) {
+                    document.getElementById(screenId).classList.add('active');
+                }
+
+                // Update nav
+                document.querySelectorAll('.nav-item').forEach((item, idx) => {
+                    item.classList.toggle('active', idx === navIndex);
+                });
+            },
+
+            toggleTag(btn, tag) {
+                btn.style.opacity = btn.style.opacity === '0.5' ? '1' : '0.5';
+                if (this.selectedTags.includes(tag)) {
+                    this.selectedTags = this.selectedTags.filter(t => t !== tag);
+                } else {
+                    this.selectedTags.push(tag);
+                }
+            },
+
+            handlePhotoUpload(event) {
+                const file = event.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        this.currentPhotoData = e.target.result;
+                        const card = document.getElementById('photo-card');
+                        card.innerHTML = `
+                            <div class="tape-effect"></div>
+                            <img src="${this.currentPhotoData}" class="photo-preview" style="width: 100%; height: 250px; object-fit: cover;">
+                        `;
+                    };
+                    reader.readAsDataURL(file);
+                }
+            },
+
+            handleEditPhotoUpload(event) {
+                const file = event.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        this.currentPhotoData = e.target.result;
+                        document.getElementById('edit-photo-display').innerHTML = `
+                            <img src="${this.currentPhotoData}" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px;">
+                        `;
+                    };
+                    reader.readAsDataURL(file);
+                }
+            },
+
+            createTarget() {
+                const name = document.getElementById('target-name').value;
+                const category = document.getElementById('target-category').value;
+                const description = document.getElementById('target-description').value;
+
+                if (!name || !category || !description) {
+                    alert('Please fill in all fields!');
+                    return;
+                }
+
+                const entry = {
+                    id: Date.now(),
+                    name,
+                    category,
+                    description,
+                    photo: this.currentPhotoData,
+                    tags: this.selectedTags,
+                    createdAt: new Date().toLocaleDateString(),
+                    editCount: 0
+                };
+
+                this.entries.push(entry);
+                this.saveData();
+
+                // Reset form
+                document.getElementById('target-name').value = '';
+                document.getElementById('target-category').value = '';
+                document.getElementById('target-description').value = '';
+                document.getElementById('photo-card').innerHTML = `
+                    <div class="tape-effect"></div>
+                    <div class="photo-placeholder">😊</div>
+                    <p class="photo-label">Click to Add Mugshot</p>
+                `;
+                this.selectedTags = [];
+                this.currentPhotoData = null;
+                document.querySelectorAll('.hashtag-btn').forEach(b => b.style.opacity = '1');
+
+                this.renderVictims();
+                this.showScreen('victims');
+            },
+
+            renderVictims() {
+                const grid = document.getElementById('victims-grid');
+                grid.innerHTML = '';
+
+                if (this.entries.length === 0) {
+                    grid.innerHTML = `
+                        <div style="grid-column: 1/-1; text-align: center; padding: 4rem 2rem;">
+                            <div class="empty-state-icon">📭</div>
+                            <p class="empty-state-text">No entries yet</p>
+                        </div>
+                    `;
+                    return;
+                }
+
+                this.entries.forEach(entry => {
+                    const card = document.createElement('div');
+                    card.className = 'victim-card';
+                    card.innerHTML = `
+                        <div class="victim-photo">
+                            ${entry.photo ? `<img src="${entry.photo}" alt="${entry.name}">` : '🤡'}
+                        </div>
+                        <div class="victim-info">
+                            <div class="victim-category">${entry.category}</div>
+                        </div>
+                    `;
+                    card.onclick = (e) => {
+                        if (!e.target.classList.contains('victim-action-btn')) {
+                            this.viewTargetDetail(entry.id);
+                        }
+                    };
+                    grid.appendChild(card);
+                });
+            },
+
+            viewTargetDetail(id) {
+                const entry = this.entries.find(e => e.id === id);
+                if (!entry) return;
+
+                const content = document.getElementById('detail-content');
+                const entryNumber = this.entries.indexOf(entry) + 1;
+                
+                let detailHTML = `
+                    <div class="notebook-page">
+                        <div class="notebook-content">
+                            <div class="entry-header">Entry #${String(entryNumber).padStart(3, '0')} - ${entry.category}</div>
+                            
+                            <div class="detail-grid">
+                                <div class="detail-photo">
+                                    ${entry.photo ? `<img src="${entry.photo}" class="detail-photo-image" alt="${entry.name}">` : '<div class="detail-photo-placeholder">😊</div>'}
+                                </div>
+                            </div>
+                            
+                            <div id="detail-reveal-section" style="display: none;">
+                                <div style="color: var(--dark-text); font-weight: bold; margin: 1rem 0;">${entry.name}</div>
+                                <div class="detail-text">
+                                    ${entry.description}
+                                </div>
+                                <div id="detail-hashtags" style="margin-top: 1rem; padding-top: 1rem; border-top: 2px solid var(--dark-text);">
+                                    ${entry.tags ? entry.tags.map(tag => `<span style="display: inline-block; background: var(--hot-pink); color: white; padding: 0.25rem 0.75rem; border-radius: 15px; margin: 0.25rem; font-size: 0.9rem;">${tag}</span>`).join('') : ''}
+                                </div>
+                            </div>
+
+                            <div class="detail-actions">
+                                <button class="detail-btn detail-cancel-btn" onclick="app.showScreen('victims')">BACK</button>
+                                <button class="detail-btn" id="reveal-btn" style="background: var(--primary-brand);" onclick="document.getElementById('detail-reveal-section').style.display='block'; document.getElementById('edit-burn-section').style.display='flex'; document.getElementById('reveal-btn').style.display='none';">REVEAL EVERYTHING</button>
+                            </div>
+                            
+                            <div id="edit-burn-section" style="display: none; gap: 0.5rem;">
+                                <button class="detail-btn detail-edit-btn" onclick="app.editTarget(${entry.id})">EDIT</button>
+                                <button class="detail-btn detail-burn-btn" onclick="app.confirmBurn(${entry.id})">BURN</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                content.innerHTML = detailHTML;
+                this.showScreen('detail');
+            },
+
+            editTarget(id) {
+                this.currentEditingId = id;
+                const entry = this.entries.find(e => e.id === id);
+                if (!entry) return;
+
+                document.getElementById('edit-target-name').value = entry.name;
+                document.getElementById('edit-target-category').value = entry.category;
+                document.getElementById('edit-target-description').value = entry.description;
+                
+                if (entry.photo) {
+                    this.currentPhotoData = entry.photo;
+                    document.getElementById('edit-photo-display').innerHTML = `
+                        <img src="${entry.photo}" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px;">
+                    `;
+                } else {
+                    document.getElementById('edit-photo-display').innerHTML = '<div style="font-size: 3rem; text-align: center; padding: 2rem;">😊</div>';
+                    this.currentPhotoData = null;
+                }
+
+                const preview = document.getElementById('edit-preview');
+                preview.innerHTML = `
+                    <div style="background: #f0f0f0; padding: 1.5rem; border-radius: 10px;">
+                        <strong style="color: var(--dark-text);">${entry.name}</strong><br>
+                        <span style="color: var(--hot-pink); font-weight: bold; font-size: 0.9rem;">${entry.category}</span><br><br>
+                        <p style="color: var(--dark-text); margin-top: 0.5rem; font-size: 0.85rem; line-height: 1.4;">${entry.description.substring(0, 250)}${entry.description.length > 250 ? '...' : ''}</p>
+                    </div>
+                `;
+
+                document.getElementById('modal-overlay').classList.add('show');
+                document.getElementById('edit-modal').classList.add('show');
+            },
+
+            saveEdit() {
+                const entry = this.entries.find(e => e.id === this.currentEditingId);
+                if (!entry) return;
+
+                const name = document.getElementById('edit-target-name').value;
+                const category = document.getElementById('edit-target-category').value;
+                const description = document.getElementById('edit-target-description').value;
+
+                if (!name || !category || !description) {
+                    alert('Please fill in all fields!');
+                    return;
+                }
+
+                entry.name = name;
+                entry.category = category;
+                entry.description = description;
+                if (this.currentPhotoData) {
+                    entry.photo = this.currentPhotoData;
+                }
+                entry.editCount = (entry.editCount || 0) + 1;
+
+                this.saveData();
+                this.currentEditingId = null;
+                this.currentPhotoData = null;
+                this.closeModals();
+                this.renderVictims();
+                this.showScreen('victims');
+            },
+
+            confirmBurn(id) {
+                document.getElementById('confirmation-text').textContent = 'Are you sure you want to burn this entry? It will be gone forever...';
+                document.getElementById('confirmation-yes-btn').onclick = () => this.burnTarget(id);
+                document.getElementById('modal-overlay').classList.add('show');
+                document.getElementById('confirmation-modal').classList.add('show');
+            },
+
+            burnTarget(id) {
+                this.closeModals();
+                this.showScreen('burn-animation');
+
+                setTimeout(() => {
+                    this.entries = this.entries.filter(e => e.id !== id);
+                    this.saveData();
+                    this.renderVictims();
+                    this.showScreen('victims');
+                }, 3500);
+            },
+
+            postToWall() {
+                const input = document.getElementById('wall-input');
+                const text = input.value.trim();
+
+                if (!text) {
+                    alert('Please enter something to post!');
+                    return;
+                }
+
+                const post = {
+                    id: Date.now(),
+                    text,
+                    createdAt: new Date().toLocaleDateString()
+                };
+
+                this.wallPosts.unshift(post);
+                this.saveData();
+                input.value = '';
+                this.renderWall();
+            },
+
+            renderWall() {
+                const wall = document.getElementById('sticky-notes-wall');
+                wall.innerHTML = '';
+
+                if (this.wallPosts.length === 0) {
+                    wall.innerHTML = `
+                        <div style="grid-column: 1/-1; text-align: center; padding: 4rem 2rem;">
+                            <div class="empty-state-icon">📝</div>
+                            <p class="empty-state-text">No hot takes yet</p>
+                        </div>
+                    `;
+                    return;
+                }
+
+                this.wallPosts.forEach((post, idx) => {
+                    const note = document.createElement('div');
+                    const rotation = Math.random() * 10 - 5;
+                    const colorClass = this.colors[this.colorIndex++ % this.colors.length];
+                    
+                    // Rotate through fonts
+                    const fonts = ['Caveat', 'Shadows Into Light', 'Cedarville Cursive', 'Grape Nuts'];
+                    const fontIndex = idx % fonts.length;
+                    const fontFamily = fonts[fontIndex];
+                    
+                    note.className = `sticky-note ${colorClass}`;
+                    note.style.setProperty('--rotation', rotation + 'deg');
+                    note.innerHTML = `
+                        <div class="note-content" style="font-family: '${fontFamily}', cursive; font-size: 1.1rem;">${post.text}</div>
+                        <div class="note-meta">
+                            <span>${post.createdAt}</span>
+                            <button class="note-delete-btn" onclick="app.deleteWallPost(${post.id})">✕</button>
+                        </div>
+                    `;
+                    wall.appendChild(note);
+                });
+            },
+
+            deleteWallPost(id) {
+                this.wallPosts = this.wallPosts.filter(p => p.id !== id);
+                this.saveData();
+                this.renderWall();
+            }
+        };
+
+        // Initialize app
+        app.init();
+
+        // Handle keyboard input for passcode
+        document.addEventListener('keypress', (e) => {
+            if (document.getElementById('access-screen').classList.contains('active')) {
+                if (e.key >= '0' && e.key <= '9') {
+                    app.enterPasscodeDigit(e.key);
+                }
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (document.getElementById('access-screen').classList.contains('active')) {
+                if (e.key === 'Backspace') {
+                    app.clearPasscode();
+                }
+            }
+        });
+    </script>
+</body>
+</html>
