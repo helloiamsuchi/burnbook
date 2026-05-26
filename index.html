@@ -696,7 +696,7 @@
             border: 2px solid var(--hot-pink);
             padding: 1rem;
             border-radius: 25px;
-            font-family: 'Cedarville Cursive', cursive;
+            font-family: 'EB Garamond', serif;
             color: var(--dark-text);
         }
 
@@ -1423,16 +1423,19 @@
             <div class="starfield" id="starfield"></div>
             <div class="landing-content">
                 <div class="doodle">xoxo</div>
-                <div class="hero-title">BURN BOOK</div>
                 <div class="ransom-letter">
                     <div class="letter-tile">B</div>
                     <div class="letter-tile">U</div>
                     <div class="letter-tile">R</div>
                     <div class="letter-tile">N</div>
+                    <div class="letter-tile">B</div>
+                    <div class="letter-tile">O</div>
+                    <div class="letter-tile">O</div>
+                    <div class="letter-tile">K</div>
                 </div>
-                <div class="doodle">byotch</div>
+                <div class="doodle">Byotch</div>
                 <button class="cta-button" onclick="app.goToAccess()">OPEN IT GURL!</button>
-                <p class="cta-subtitle">You know you want to see who's in here...</p>
+                <p class="cta-subtitle">you know you want to see who's in here...</p>
             </div>
         </div>
 
@@ -1448,7 +1451,7 @@
             <div style="flex: 1; display: flex; align-items: center; justify-content: center;">
                 <div class="access-container">
                     <div class="padlock-icon">🔐</div>
-                    <p class="access-prompt">Enter the code if you dare...</p>
+                    <p class="access-prompt">You dare to open the book?</p>
                     <div class="passcode-display" id="passcode-display">
                         <div class="passcode-dot"></div>
                         <div class="passcode-dot"></div>
@@ -1456,7 +1459,7 @@
                         <div class="passcode-dot"></div>
                     </div>
                     <div class="keypad" id="keypad"></div>
-                    <div class="error-message" id="error-message">Wrong passcode! Try again.</div>
+                    <div class="error-message" id="error-message">An imposter, aren't you?</div>
                 </div>
             </div>
         </div>
@@ -1480,7 +1483,7 @@
                         </div>
                         <div class="photo-card" id="photo-card" onclick="document.getElementById('photo-input').click()">
                             <div class="tape-effect"></div>
-                            <div class="photo-placeholder">😊</div>
+                            <div class="photo-placeholder">🤡</div>
                             <p class="photo-label">Click to Add Mugshot</p>
                         </div>
                         <input type="file" id="photo-input" accept="image/*" style="display: none;" onchange="app.handlePhotoUpload(event)">
@@ -1496,6 +1499,9 @@
                                 <button class="hashtag-btn" onclick="app.toggleTag(this, 'i-hate-him')">#i-hate-him</button>
                                 <button class="hashtag-btn" onclick="app.toggleTag(this, 'i-hate-her')">#i-hate-her</button>
                                 <button class="hashtag-btn" onclick="app.toggleTag(this, 'red-flag')">#red-flag</button>
+                                <button class="hashtag-btn" onclick="app.toggleTag(this, 'get-a-life')">#get-a-life</button>    
+                                <button class="hashtag-btn" onclick="app.toggleTag(this, 'third-wheel')">#third-wheel</button>   
+                                <button class="hashtag-btn" onclick="app.toggleTag(this, 'ill-mannered')">#ill-mannered</button>                                                         
                             </div>
                         </div>
                     </div>
@@ -1513,10 +1519,10 @@
 
                         <div class="form-group">
                             <label class="form-label">Description / Tea Spill</label>
-                            <textarea id="target-description" class="form-textarea" placeholder="spill the tea... don't leave anything out..."></textarea>
+                            <textarea id="target-description" class="form-textarea" placeholder="Spill the tea sis..."></textarea>
                         </div>
 
-                        <button class="submit-btn" onclick="app.createTarget()">SEAL WITH GLITTER ✨</button>
+                        <button class="submit-btn" onclick="app.createTarget()">SEAL IT WITH GLITTER ✨💅💄</button>
                     </div>
                 </div>
             </div>
@@ -1552,7 +1558,7 @@
             <div class="main-content">
                 <div class="wall-content">
                     <div class="wall-input-section">
-                        <input type="text" id="wall-input" class="wall-input" placeholder="drop your hot take..." />
+                        <input type="text" id="wall-input" class="wall-input" placeholder="Drop your hot take..." />
                         <button class="wall-post-btn" onclick="app.postToWall()">POST</button>
                     </div>
                     <div class="sticky-notes-wall" id="sticky-notes-wall"></div>
@@ -1581,7 +1587,7 @@
             <div class="burn-animation-content">
                 <div class="burn-title">BURN BOOK</div>
                 <div class="burning-paper"></div>
-                <p class="burn-main-text">gone in flames, babe</p>
+                <p class="burn-main-text">Gone in flames, babe</p>
                 <p class="burn-subtitle">THE SECRET IS ASH</p>
             </div>
         </div>
@@ -1978,7 +1984,7 @@
                             
                             <div class="detail-grid">
                                 <div class="detail-photo">
-                                    ${entry.photo ? `<img src="${entry.photo}" class="detail-photo-image" alt="${entry.name}">` : '<div class="detail-photo-placeholder">😊</div>'}
+                                    ${entry.photo ? `<img src="${entry.photo}" class="detail-photo-image" alt="${entry.name}">` : '<div class="detail-photo-placeholder">🤡</div>'}
                                 </div>
                             </div>
                             
